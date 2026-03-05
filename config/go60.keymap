@@ -152,11 +152,11 @@
 #define KB_TYPE_GO_60    2
 
 #define KB_TYPE          KB_TYPE_GO_60
-#define EDITOR_LAYOUT_OS 'Z'
+#define EDITOR_LAYOUT_OS 'L'
 #define EDITOR_HOST_OS   'W'
 
 /* Automatically generated layer name defines */
-#define LAYER_HRM_macOS 0
+#define LAYER_HRM_WinLinx 0
 #define LAYER_Typing 1
 #define LAYER_Autoshift 2
 #define LAYER_LeftPinky 3
@@ -195,6 +195,489 @@
 };
 
 /* Custom Device-tree */
+////////////////////////////////////////////////////////////////
+// TailorKey 4.2j Go60 - RGB Lighting 
+// Paste this configuration into the Custom Device-tree section
+// For more into, see https://sites.google.com/view/tailorkey
+////////////////////////////////////////////////////////////////
+
+#if __has_include(<dt-bindings/zmk/rgb_colors.h>)
+  //
+  // Color definitions with conflict guard to prevent
+  // accidental redefinition of common abbreviations.
+  //
+  #if defined(RED) || defined(RED_RGB) || \
+      defined(COR) || defined(COR_RGB) || \
+      defined(ORN) || defined(ORN_RGB) || \
+      defined(GDN) || defined(GDN_RGB) || \
+      defined(GOL) || defined(GOL_RGB) || \
+      defined(YLW) || defined(YLW_RGB) || \
+      defined(CHU) || defined(CHU_RGB) || \
+      defined(GRN) || defined(GRN_RGB) || \
+      defined(SPG) || defined(SPG_RGB) || \
+      defined(CYN) || defined(CYN_RGB) || \
+      defined(AZU) || defined(AZU_RGB) || \
+      defined(TEA) || defined(TEA_RGB) || \
+      defined(TUR) || defined(TUR_RGB) || \
+      defined(BLU) || defined(BLU_RGB) || \
+      defined(PUR) || defined(PUR_RGB) || \
+      defined(MAJ) || defined(MAJ_RGB) || \
+      defined(PNK) || defined(PNK_RGB) || \
+      defined(WHT) || defined(WHT_RGB) || \
+      defined(BLK) || defined(BLK_RGB) || \
+      defined(___) || \
+      defined(DUG) || defined(DUG_RGB) || \
+      defined(LAC) || defined(LAC_RGB) || \
+      defined(BSL) || defined(BNL) || defined(BCL) || \
+      defined(SSL) || defined(SNL) || defined(SCL) || \
+      defined(FST) || defined(WRP) || defined(SLO)
+  #error "Naming conflict: 3-letter color abbreviation already defined!"
+  #endif
+
+  //
+  // color definitions from QMK
+  // https://github.com/qmk/qmk_firmware/blob/master/quantum/color.h
+  //
+  #define RED_RGB 0xFF0000 // #FF0000 RED      => RED (red)
+  #define COR_RGB 0xFF7C4D // #FF7C4D CORAL    => COR (coral)
+  #define ORN_RGB 0xFF8000 // #FF8000 ORANGE   => ORN (ornj)
+  #define GDN_RGB 0xD9A521 // #D9A521 GOLDNROD => GDN (gold'nrod)
+  #define GOL_RGB 0xFFD900 // #FFD900 GOLD     => GOL (gold)
+  #define YLW_RGB 0xFFFF00 // #FFFF00 YELLOW   => YLW (yellow)
+  #define CHU_RGB 0x80FF00 // #80FF00 CHARTRSE => CHU (chartreuse)
+  #define GRN_RGB 0x00FF00 // #00FF00 GREEN    => GRN (green)
+  #define SPG_RGB 0x00FF80 // #00FF80 SPRINGRN => SPG (spring green)
+  #define CYN_RGB 0x00FFFF // #00FFFF CYAN     => CYN (sigh-an)
+  #define AZU_RGB 0x99F5FF // #99F5FF AZURE    => AZU (a-zur)
+  #define TEA_RGB 0x008080 // #008080 TEAL     => TEA (teel)
+  #define TUR_RGB 0x476E6A // #476E6A TURQUOIS => TUR (turquoise)
+  #define BLU_RGB 0x0000FF // #0000FF BLUE     => BLU (bloo)
+  #define PUR_RGB 0x7A00FF // #7A00FF PURPLE   => PUR (purp)
+  #define MAJ_RGB 0xFF00FF // #FF00FF MAGENTA  => MAJ (mah-jenta)
+  #define PNK_RGB 0xFF80BF // #FF80BF PINK     => PNK (pink)
+  #define WHT_RGB 0xFFFFFF // #FFFFFF WHITE    => WHT (white)
+  #define BLK_RGB 0x000000 // #000000 BLACK    => BLK (blak)
+
+  //
+  // color definitions from MoErgo
+  // https://github.com/moergo-sc/zmk/blob/aca523dfce9b6447ffd19d833b791d44f1f286de/app/src/rgb_underglow.c#L259-L265
+  //
+  #define DUG_RGB 0x00ff68 // #00ff68 DULL_GRN => DUG (dull green)
+  #define LAC_RGB 0x6b1fce // #6b1fce LILAC    => LAC (lilac)
+
+  //
+  // underglow for the colors above
+  //
+  #define RED &ug RED_RGB
+  #define COR &ug COR_RGB
+  #define ORN &ug ORN_RGB
+  #define GDN &ug GDN_RGB
+  #define GOL &ug GOL_RGB
+  #define YLW &ug YLW_RGB
+  #define CHU &ug CHU_RGB
+  #define GRN &ug GRN_RGB
+  #define SPG &ug SPG_RGB
+  #define CYN &ug CYN_RGB
+  #define AZU &ug AZU_RGB
+  #define TEA &ug TEA_RGB
+  #define TUR &ug TUR_RGB
+  #define BLU &ug BLU_RGB
+  #define PUR &ug PUR_RGB
+  #define MAJ &ug MAJ_RGB
+  #define PNK &ug PNK_RGB
+  #define WHT &ug WHT_RGB
+  #define ___ &ug BLK_RGB
+  #define DUG &ug DUG_RGB
+  #define LAC &ug LAC_RGB
+
+  //
+  // underglow for keyboard locks on the Base layer
+  //
+  #define BSL &ug_sl BLK_RGB RED_RGB // ScrollLock COLOR_OFF COLOR_ON
+  #define BNL &ug_nl BLK_RGB RED_RGB // NumLock    COLOR_OFF COLOR_ON
+  #define BCL &ug_cl BLK_RGB RED_RGB // CapsLock   COLOR_OFF COLOR_ON
+
+
+  //
+  // colors for mouse speed scaling in Mouse layers
+  //
+  #define FST GOL
+  #define WRP CHU
+  #define SLO COR
+
+
+
+  // ==== PER-KEY-RGB <section begins> ====
+  / {
+    underglow-layer {
+      compatible = "zmk,underglow-layer";
+
+   
+      #ifdef LAYER_HRM_WinLinx
+      HRM_WinLinx {
+        bindings = <
+          ___ ___ BCL BNL BSL ___                                     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ___ ___ ___                                     ___ ___ ___ ___ ___ ___
+          ___ MAJ CYN CHU YLW ___                                     ___ YLW CHU CYN MAJ ___
+          ___ ___ ___ ___ ___ ___                                     ___ ___ ___ ___ ___ ___
+                  ___ ___ ___                                             ___ ___ ___ 
+                                       ___ ___ ___     ___ ___ ___ 
+        >;
+        layer-id = <LAYER_HRM_WinLinx>;
+        fade-delay = <30>;
+      };
+      #endif
+
+      #ifdef LAYER_HRM_macOS
+      HRM_macOS {
+        bindings = <
+          ___ ___ BCL BNL BSL ___                                     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ___ ___ ___                                     ___ ___ ___ ___ ___ ___
+          ___ CHU CYN MAJ YLW ___                                     ___ YLW MAJ CYN CHU ___
+          ___ ___ ___ ___ ___ ___                                     ___ ___ ___ ___ ___ ___
+                  ___ ___ ___                                             ___ ___ ___ 
+                                       ___ ___ ___     ___ ___ ___ 
+        >;
+        layer-id = <LAYER_HRM_macOS>;
+        fade-delay = <30>;
+      };
+      #endif
+
+      #ifdef LAYER_Keypad
+      Keypad {
+        bindings = <
+          ___ WHT WHT WHT WHT WHT                                     WHT WHT WHT WHT WHT WHT 
+          WHT ___ GRN GRN GRN GRN                                     WHT WHT WHT WHT WHT WHT 
+          WHT YLW GRN GRN GRN GRN                                     WHT WHT WHT WHT WHT ORN
+          ___ YLW YLW YLW YLW YLW                                     WHT WHT WHT WHT WHT ___
+                  ___ WHT WHT                                             WHT WHT WHT 
+                                       WHT WHT WHT     WHT WHT WHT 
+        >;
+        layer-id = <LAYER_Keypad>;
+        fade-delay = <15>;
+      };
+      #endif
+
+  #ifdef LAYER_Autoshift
+  Autoshift {
+    bindings = <
+          YLW YLW YLW YLW YLW YLW                                     YLW YLW YLW YLW YLW YLW
+          ___ YLW YLW YLW YLW YLW                                     YLW YLW YLW YLW YLW YLW
+          ___ YLW YLW YLW YLW YLW                                     YLW YLW YLW YLW YLW YLW
+          YLW YLW YLW YLW YLW YLW                                     YLW YLW YLW YLW YLW ___
+                  ___ ___ ___                                             ___ ___ ___ 
+                                      ___ ___ ___     ___ ___ ___  
+    >;
+    layer-id = <LAYER_Autoshift>;
+    fade-delay = <180>;
+  };
+  #endif
+
+ #ifdef LAYER_LeftPinky
+  LeftPinky {
+    bindings = <
+          ___ ___ BCL BNL BSL ___                                     ___ ___ ___ ___ ___ ___
+          ___ MAJ ___ ___ ___ ___                                     ___ ___ ___ ___ ___ ___
+          ___ MAJ ___ ___ ___ ___                                     ___ ___ ___ ___ ___ ___
+          ___ MAJ ___ ___ ___ ___                                     ___ ___ ___ ___ ___ ___
+                  ___ ___ ___                                             ___ ___ ___ 
+                                       ___ ___ ___     ___ ___ ___ 
+        >;
+    layer-id = <LAYER_LeftPinky>;
+    fade-delay = <15>;
+  };
+  #endif
+
+  #ifdef LAYER_LeftRingy
+  LeftRingy {
+    bindings = <
+          ___ ___ BCL BNL BSL ___                                     ___ ___ ___ ___ ___ ___
+          ___ ___ CYN ___ ___ ___                                     ___ ___ ___ ___ ___ ___
+          ___ ___ CYN ___ ___ ___                                     ___ ___ ___ ___ ___ ___
+          ___ ___ CYN ___ ___ ___                                     ___ ___ ___ ___ ___ ___
+                  ___ ___ ___                                             ___ ___ ___ 
+                                       ___ ___ ___     ___ ___ ___ 
+    >;
+    layer-id = <LAYER_LeftRingy>;
+    fade-delay = <15>;
+  };
+  #endif
+
+  #ifdef LAYER_LeftMiddy
+  LeftMiddy {
+    bindings = <
+          ___ ___ BCL BNL BSL ___                                     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ GRN ___ ___                                     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ GRN ___ ___                                     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ GRN ___ ___                                     ___ ___ ___ ___ ___ ___
+                  ___ ___ ___                                             ___ ___ ___ 
+                                       ___ ___ ___     ___ ___ ___ 
+    >;
+    layer-id = <LAYER_LeftMiddy>;
+    fade-delay = <15>;
+   };
+  #endif
+
+  #ifdef LAYER_LeftIndex
+  LeftIndex {
+    bindings = <
+          ___ ___ BCL BNL BSL ___                                     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ___ YLW ___                                     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ___ YLW ___                                     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ___ YLW ___                                     ___ ___ ___ ___ ___ ___
+                  ___ ___ ___                                             ___ ___ ___ 
+                                       ___ ___ ___     ___ ___ ___ 
+    >;
+    layer-id = <LAYER_LeftIndex>;
+    fade-delay = <15>;
+  };
+  #endif
+
+  #ifdef LAYER_RightIndex
+  RightIndex {
+    bindings = <
+         ___ ___ BCL BNL BSL ___                                     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ___ ___ ___                                     ___ YLW ___ ___ ___ ___
+          ___ ___ ___ ___ ___ ___                                     ___ YLW ___ ___ ___ ___
+          ___ ___ ___ ___ ___ ___                                     ___ YLW ___ ___ ___ ___
+                  ___ ___ ___                                             ___ ___ ___ 
+                                       ___ ___ ___     ___ ___ ___ 
+    >;
+    layer-id = <LAYER_RightIndex>;
+    fade-delay = <15>;
+  };
+  #endif
+
+  #ifdef LAYER_RightMiddy
+  RightMiddy {
+    bindings = <
+          ___ ___ BCL BNL BSL ___                                     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ___ ___ ___                                     ___ ___ GRN ___ ___ ___
+          ___ ___ ___ ___ ___ ___                                     ___ ___ GRN ___ ___ ___
+          ___ ___ ___ ___ ___ ___                                     ___ ___ GRN ___ ___ ___
+                  ___ ___ ___                                             ___ ___ ___ 
+                                       ___ ___ ___     ___ ___ ___ 
+    >;
+    layer-id = <LAYER_RightMiddy>;
+    fade-delay = <15>;
+  };
+  #endif
+
+  #ifdef LAYER_RightRingy
+  RightRingy {
+    bindings = <
+          ___ ___ BCL BNL BSL ___                                     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ___ ___ ___                                     ___ ___ ___ CYN ___ ___
+          ___ ___ ___ ___ ___ ___                                     ___ ___ ___ CYN ___ ___
+          ___ ___ ___ ___ ___ ___                                     ___ ___ ___ CYN ___ ___
+                  ___ ___ ___                                             ___ ___ ___ 
+                                       ___ ___ ___     ___ ___ ___ 
+    >;
+    layer-id = <LAYER_RightRingy>;
+    fade-delay = <15>;
+  };
+  #endif
+
+  #ifdef LAYER_RightPinky
+  RightPinky {
+    bindings = <
+          ___ ___ BCL BNL BSL ___                                     ___ ___ ___ ___ ___ ___
+          ___ ___ ___ ___ ___ ___                                     ___ ___ ___ ___ MAJ ___
+          ___ ___ ___ ___ ___ ___                                     ___ ___ ___ ___ MAJ ___
+          ___ ___ ___ ___ ___ ___                                     ___ ___ ___ ___ MAJ ___
+                  ___ ___ ___                                             ___ ___ ___ 
+                                       ___ ___ ___     ___ ___ ___ 
+    >;
+    layer-id = <LAYER_RightPinky>;
+    fade-delay = <15>;
+  };
+  #endif
+
+
+  #ifdef LAYER_Cursor
+  Cursor {
+    bindings = <
+          ___ ORN ORN ORN ORN ___                                     ___ ___ ___ ___ ___ ___
+          ___ ORN MAJ MAJ ORN YLW                                     YLW ORN PNK PNK ORN ___
+          WHT WHT WHT WHT WHT YLW                                     YLW GRN GRN GRN GRN WHT
+          MAJ CYN CYN CYN MAJ YLW                                     YLW GRN GRN GRN GRN MAJ
+                  ___ MAJ MAJ                                             MAJ MAJ MAJ
+                                      ___ DUG ___     CYN CYN CYN    
+    >;
+    layer-id = <LAYER_Cursor>;
+    fade-delay = <5>;
+  };
+  #endif
+
+  #ifdef LAYER_Cursor_macOS
+  Cursor_macOS {
+    bindings = <
+          ___ ORN ORN ORN ORN ___                                     ___ ___ ___ ___ ___ ___
+          ___ ORN CYN CYN ORN YLW                                     YLW ORN PNK PNK ORN ___
+          WHT WHT WHT WHT WHT YLW                                     YLW GRN GRN GRN GRN WHT
+          MAJ CYN CYN CYN MAJ YLW                                     YLW GRN GRN GRN GRN MAJ
+                  ___ MAJ MAJ                                             MAJ MAJ MAJ
+                                      ___ DUG ___     CYN CYN CYN    
+    >;
+    layer-id = <LAYER_Cursor_macOS>;
+    fade-delay = <5>;
+  };
+  #endif
+
+  #ifdef LAYER_Symbol
+  Symbol {
+    bindings = <
+          MAJ AZU AZU AZU YLW YLW                                     ___ ___ ___ ___ ___ ___
+          AZU MAJ AZU AZU YLW YLW                                     MAJ ORN ORN ORN ORN ___
+          YLW YLW CHU ORN YLW YLW                                     MAJ ORN ORN ORN ORN ___
+          MAJ CHU CHU CHU CHU YLW                                     MAJ WHT WHT WHT WHT ___
+                  MAJ MAJ ORN                                             YLW YLW YLW
+                                      YLW YLW YLW     ___ ___ ___ 
+    >;
+    layer-id = <LAYER_Symbol>;
+    fade-delay = <5>;
+  };
+  #endif
+
+  #ifdef LAYER_Mouse
+  Mouse {
+    bindings = <
+          ___ ___ ___ ___ ___ ___                                     ___ ___ ___ ___ ___ ___
+          ___ ___ LAC AZU LAC ___                                     ___ WHT WHT WHT WHT ___
+          ___ TEA AZU AZU AZU ___                                     ___ FST WRP SLO YLW PNK
+          ___ TEA SLO WRP FST ___                                     ___ LAC AZU LAC ORN PNK
+                  YLW YLW YLW                                                 AZU AZU AZU 
+                                      YLW ORN PNK     ___ DUG ___ 
+    >;
+    layer-id = <LAYER_Mouse>;
+    fade-delay = <5>;
+  };
+  #endif
+
+  #ifdef LAYER_MouseFast
+  MouseFast {
+    bindings = <
+
+          ___ ___ ___ ___ ___ ___                                     ___ YLW GRN CYN MAJ ___
+          ___ ___ FST FST FST ___                                     ___ FST FST FST FST ___
+          ___ FST FST FST FST ___                                     ___ FST WRP SLO ___ ___
+          ___ FST SLO WRP FST ___                                     ___ FST FST FST FST ___
+                  ___ ___ ___                                             YLW ORN MAJ
+                                      YLW ORN PNK     ___ DUG ___ 
+    >;
+    layer-id = <LAYER_MouseFast>;
+    fade-delay = <5>;
+  };
+  #endif
+
+  #ifdef LAYER_MouseWarp
+  MouseWarp {
+    bindings = <
+
+          ___ ___ ___ ___ ___ ___                                     ___ YLW GRN CYN MAJ ___
+          ___ ___ WRP WRP WRP ___                                     ___ WRP WRP WRP WRP ___
+          ___ WRP WRP WRP WRP ___                                     ___ FST WRP SLO ___ ___
+          ___ WRP SLO WRP FST ___                                     ___ WRP WRP WRP WRP ___
+                  ___ ___ ___                                             YLW ORN MAJ
+                                      YLW ORN PNK     ___ DUG ___ 
+    >;
+    layer-id = <LAYER_MouseWarp>;
+    fade-delay = <5>;
+  };
+  #endif
+
+  #ifdef LAYER_MouseSlow
+  MouseSlow {
+    bindings = <
+      ___ ___ ___ ___ ___ ___                                     ___ YLW GRN CYN MAJ ___
+      ___ ___ SLO SLO SLO ___                                     ___ SLO SLO SLO SLO ___
+      ___ SLO SLO SLO SLO ___                                     ___ FST WRP SLO ___ ___
+      ___ SLO SLO WRP FST ___                                     ___ SLO SLO SLO SLO ___
+              ___ ___ ___                                             YLW ORN MAJ
+                                      YLW ORN PNK     ___ DUG ___ 
+    >;
+    layer-id = <LAYER_MouseSlow>;
+    fade-delay = <5>;
+  };
+  #endif
+
+  #ifdef LAYER_Gaming
+  Gaming {
+    bindings = <
+
+      ___ ___ ___ ___ ___ ___                                     ___ ___ ___ ___ ___ ___
+      ___ ___ ___ GRN ___ ___                                     ___ ___ ___ ___ ___ ___
+      ___ ___ GRN GRN GRN ___                                     ___ ___ ___ ___ ___ ___
+      YLW ___ ___ ___ ___ ___                                     ___ ___ GRN ___ ___ ___
+              ___ ___ ___                                             GRN GRN GRN 
+                                   ___ ___ ___     ___ ___ ___  
+    >;
+    layer-id = <LAYER_Gaming>;
+    fade-delay = <120>;
+     };
+      #endif
+ 
+
+    };
+  };
+  // ==== PER-KEY-RGB <section ends> =====
+
+  #undef RED
+  #undef RED_RGB
+  #undef COR
+  #undef COR_RGB
+  #undef ORN
+  #undef ORN_RGB
+  #undef GDN
+  #undef GDN_RGB
+  #undef GOL
+  #undef GOL_RGB
+  #undef YLW
+  #undef YLW_RGB
+  #undef CHU
+  #undef CHU_RGB
+  #undef GRN
+  #undef GRN_RGB
+  #undef SPG
+  #undef SPG_RGB
+  #undef CYN
+  #undef CYN_RGB
+  #undef AZU
+  #undef AZU_RGB
+  #undef TEA
+  #undef TEA_RGB
+  #undef TUR
+  #undef TUR_RGB
+  #undef BLU
+  #undef BLU_RGB
+  #undef PUR
+  #undef PUR_RGB
+  #undef MAJ
+  #undef MAJ_RGB
+  #undef PNK
+  #undef PNK_RGB
+  #undef WHT
+  #undef WHT_RGB
+  #undef BLK
+  #undef BLK_RGB
+  #undef ___
+  #undef DUG
+  #undef DUG_RGB
+  #undef LAC
+  #undef LAC_RGB
+
+  #undef BSL
+  #undef BNL
+  #undef BCL
+
+  #undef SSL
+  #undef SNL
+  #undef SCL
+
+  #undef FST
+  #undef WRP
+  #undef SLO
+#endif
 
 
 /* Input Listeners */
@@ -447,34 +930,34 @@
         };
 
         // Cursor Layer - Extent Line (seq) - TailorKey
-        cur_EXTEND_LINE_macos_v1_TKZ: cur_EXTEND_LINE_macos_v1_TKZ {
-            label = "&CUR_EXTEND_LINE_MACOS_V1_TKZ";
+        cur_EXTEND_LINE_v1_TKZ: cur_EXTEND_LINE_v1_TKZ {
+            label = "&CUR_EXTEND_LINE_V1_TKZ";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             tap-ms = <1>;
             wait-ms = <1>;
-            bindings = <&kp LG(LS(RIGHT))>;
+            bindings = <&kp LS(END)>;
         };
 
         // Cursor Layer - Extend Word (seq) - TailorKey
-        cur_EXTEND_WORD_macos_v1_TKZ: cur_EXTEND_WORD_macos_v1_TKZ {
-            label = "&CUR_EXTEND_WORD_MACOS_V1_TKZ";
+        cur_EXTEND_WORD_v1_TKZ: cur_EXTEND_WORD_v1_TKZ {
+            label = "&CUR_EXTEND_WORD_V1_TKZ";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             tap-ms = <1>;
             wait-ms = <1>;
-            bindings = <&kp LA(LS(RIGHT))>;
+            bindings = <&kp LC(LS(RIGHT))>;
         };
 
-        // Cursor Layer macos - Select Line (seq) - TailorKey
-        cur_SELECT_LINE_macos_v1_TKZ: cur_SELECT_LINE_macos_v1_TKZ {
-            label = "&CUR_SELECT_LINE_MACOS_V1_TKZ";
+        // Cursor Layer - Select Line (seq) - TailorKey
+        cur_SELECT_LINE_v1_TKZ: cur_SELECT_LINE_v1_TKZ {
+            label = "&CUR_SELECT_LINE_V1_TKZ";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             tap-ms = <1>;
             wait-ms = <1>;
-            bindings = <&kp LG(LEFT)>
-                , <&kp LG(LS(RIGHT))>;
+            bindings = <&kp HOME>
+                , <&kp LS(END)>;
         };
 
         // Cursor Layer - Select None (seq) - TailorKey
@@ -491,14 +974,14 @@
         };
 
         // Cursor Layer - Select Word (seq) - TailorKey
-        cur_SELECT_WORD_macos_v1_TKZ: cur_SELECT_WORD_macos_v1_TKZ {
-            label = "&CUR_SELECT_WORD_MACOS_V1_TKZ";
+        cur_SELECT_WORD_v1_TKZ: cur_SELECT_WORD_v1_TKZ {
+            label = "&CUR_SELECT_WORD_V1_TKZ";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             tap-ms = <1>;
             wait-ms = <1>;
-            bindings = <&kp LA(LEFT)>
-                , <&kp LA(LS(RIGHT))>;
+            bindings = <&kp LC(LEFT)>
+                , <&kp LC(LS(RIGHT))>;
         };
 
         // HRM_left_index_hold -> swich layer  - TailorKey
@@ -936,7 +1419,7 @@
         HRM_left_index_middy_v1B_TKZ: HRM_left_index_middy_v1B_TKZ {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <190>;
+            tapping-term-ms = <180>;
             bindings = <&kp>, <&HRM_left_index_tap_v1B_TKZ>;
             flavor = "tap-preferred";
             quick-tap-ms = <300>;
@@ -949,7 +1432,7 @@
         HRM_left_index_pinky_v1B_TKZ: HRM_left_index_pinky_v1B_TKZ {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <190>;
+            tapping-term-ms = <180>;
             bindings = <&kp>, <&HRM_left_index_tap_v1B_TKZ>;
             flavor = "tap-preferred";
             quick-tap-ms = <300>;
@@ -962,7 +1445,7 @@
         HRM_left_index_ringv1_TKZ: HRM_left_index_ringv1_TKZ {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <190>;
+            tapping-term-ms = <180>;
             bindings = <&kp>, <&HRM_left_index_tap_v1B_TKZ>;
             flavor = "tap-preferred";
             quick-tap-ms = <300>;
@@ -975,7 +1458,7 @@
         HRM_left_index_v1B_TKZ: HRM_left_index_v1B_TKZ {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <190>;
+            tapping-term-ms = <180>;
             bindings = <&HRM_left_index_hold_v1B_TKZ>, <&kp>;
             flavor = "tap-preferred";
             quick-tap-ms = <300>;
@@ -1040,7 +1523,7 @@
         HRM_left_pinky_index_v1B_TKZ: HRM_left_pinky_index_v1B_TKZ {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <280>;
+            tapping-term-ms = <270>;
             bindings = <&kp>, <&HRM_left_pinky_tap_v1B_TKZ>;
             flavor = "tap-preferred";
             quick-tap-ms = <300>;
@@ -1053,7 +1536,7 @@
         HRM_left_pinky_middy_v1B_TKZ: HRM_left_pinky_middy_v1B_TKZ {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <280>;
+            tapping-term-ms = <270>;
             bindings = <&kp>, <&HRM_left_pinky_tap_v1B_TKZ>;
             flavor = "tap-preferred";
             quick-tap-ms = <300>;
@@ -1066,7 +1549,7 @@
         HRM_left_pinky_ring_v1B_TKZ: HRM_left_pinky_ring_v1B_TKZ {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <280>;
+            tapping-term-ms = <270>;
             bindings = <&kp>, <&HRM_left_pinky_tap_v1B_TKZ>;
             flavor = "tap-preferred";
             quick-tap-ms = <300>;
@@ -1079,7 +1562,7 @@
         HRM_left_pinky_v1B_TKZ: HRM_left_pinky_v1B_TKZ {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <280>;
+            tapping-term-ms = <270>;
             bindings = <&HRM_left_pinky_hold_v1B_TKZ>, <&kp>;
             flavor = "tap-preferred";
             quick-tap-ms = <300>;
@@ -1096,7 +1579,7 @@
             bindings = <&kp>, <&HRM_left_ring_tap_v1B_TKZ>;
             flavor = "tap-preferred";
             quick-tap-ms = <300>;
-            require-prior-idle-ms = <100>;
+            require-prior-idle-ms = <150>;
             hold-trigger-key-positions = <POS_RH_T3 POS_RH_T2 POS_RH_T1 POS_RH_C1R1 POS_RH_C2R1 POS_RH_C3R1 POS_RH_C4R1 POS_RH_C5R1 POS_RH_C1R2 POS_RH_C2R2 POS_RH_C3R2 POS_RH_C4R2 POS_RH_C5R2 POS_RH_C1R3 POS_RH_C2R3 POS_RH_C3R3 POS_RH_C4R3 POS_RH_C5R3 POS_RH_C1R4 POS_RH_C2R4 POS_RH_C3R4 POS_RH_C4R4 POS_RH_C5R4 POS_RH_C2R5 POS_RH_C3R5 POS_RH_C4R5 POS_RH_C6R1 POS_RH_C6R2 POS_RH_C6R3 POS_RH_C6R4 POS_LH_T2 POS_LH_T3 POS_LH_T1>;
             hold-trigger-on-release;
         };
@@ -1144,11 +1627,11 @@
         HRM_right_index_middy_v1B_TKZ: HRM_right_index_middy_v1B_TKZ {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <190>;
+            tapping-term-ms = <180>;
             bindings = <&kp>, <&HRM_right_index_tap_v1B_TKZ>;
             flavor = "tap-preferred";
             quick-tap-ms = <300>;
-            require-prior-idle-ms = <100>;
+            require-prior-idle-ms = <80>;
             hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
             hold-trigger-on-release;
         };
@@ -1157,11 +1640,11 @@
         HRM_right_index_pinky_v1B_TKZ: HRM_right_index_pinky_v1B_TKZ {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <190>;
+            tapping-term-ms = <180>;
             bindings = <&kp>, <&HRM_right_index_tap_v1B_TKZ>;
             flavor = "tap-preferred";
             quick-tap-ms = <300>;
-            require-prior-idle-ms = <100>;
+            require-prior-idle-ms = <80>;
             hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
             hold-trigger-on-release;
         };
@@ -1170,11 +1653,11 @@
         HRM_right_index_ring_v1B_TKZ: HRM_right_index_ring_v1B_TKZ {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <190>;
+            tapping-term-ms = <180>;
             bindings = <&kp>, <&HRM_right_index_tap_v1B_TKZ>;
             flavor = "tap-preferred";
             quick-tap-ms = <300>;
-            require-prior-idle-ms = <100>;
+            require-prior-idle-ms = <80>;
             hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
             hold-trigger-on-release;
         };
@@ -1183,11 +1666,11 @@
         HRM_right_index_v1B_TKZ: HRM_right_index_v1B_TKZ {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <190>;
+            tapping-term-ms = <180>;
             bindings = <&HRM_right_index_hold_v1B_TKZ>, <&kp>;
             flavor = "tap-preferred";
             quick-tap-ms = <300>;
-            require-prior-idle-ms = <100>;
+            require-prior-idle-ms = <80>;
             hold-trigger-key-positions = <POS_LH_C6R1 POS_LH_C6R2 POS_LH_C6R3 POS_LH_C6R4 POS_LH_C5R4 POS_LH_C5R3 POS_LH_C5R2 POS_LH_C4R1 POS_LH_C5R1 POS_LH_C4R2 POS_LH_C4R3 POS_LH_C4R4 POS_LH_C4R5 POS_LH_C3R5 POS_LH_C3R4 POS_LH_C3R3 POS_LH_C3R2 POS_LH_C3R1 POS_LH_C2R1 POS_LH_C1R1 POS_LH_C1R2 POS_LH_C2R2 POS_LH_C2R3 POS_LH_C1R3 POS_LH_C1R4 POS_LH_C2R4 POS_LH_C2R5 POS_LH_T3 POS_LH_T2 POS_LH_T1 POS_RH_T1 POS_RH_T2 POS_RH_T3>;
             hold-trigger-on-release;
         };
@@ -1248,7 +1731,7 @@
         HRM_right_pinky_index_v1B_TKZ: HRM_right_pinky_index_v1B_TKZ {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <260>;
+            tapping-term-ms = <270>;
             bindings = <&kp>, <&HRM_right_pinky_tap_v1B_TKZ>;
             flavor = "tap-preferred";
             quick-tap-ms = <300>;
@@ -1261,7 +1744,7 @@
         HRM_right_pinky_middy_v1B_TKZ: HRM_right_pinky_middy_v1B_TKZ {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <260>;
+            tapping-term-ms = <270>;
             bindings = <&kp>, <&HRM_right_pinky_tap_v1B_TKZ>;
             flavor = "tap-preferred";
             quick-tap-ms = <300>;
@@ -1274,7 +1757,7 @@
         HRM_right_pinky_ring_v1B_TKZ: HRM_right_pinky_ring_v1B_TKZ {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <260>;
+            tapping-term-ms = <270>;
             bindings = <&kp>, <&HRM_right_pinky_tap_v1B_TKZ>;
             flavor = "tap-preferred";
             quick-tap-ms = <300>;
@@ -1287,7 +1770,7 @@
         HRM_right_pinky_v1B_TKZ: HRM_right_pinky_v1B_TKZ {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <260>;
+            tapping-term-ms = <270>;
             bindings = <&HRM_right_pinky_hold_v1B_TKZ>, <&kp>;
             flavor = "tap-preferred";
             quick-tap-ms = <300>;
@@ -1356,6 +1839,7 @@
             bindings = <&mo>, <&kp>;
             flavor = "balanced";
             quick-tap-ms = <150>;
+            require-prior-idle-ms = <0>;
         };
 
         // thumb_layer_access - TailorKey
@@ -1366,6 +1850,7 @@
             bindings = <&mo>, <&kp>;
             flavor = "balanced";
             quick-tap-ms = <300>;
+            require-prior-idle-ms = <0>;
         };
     };
 };
@@ -1380,7 +1865,7 @@
             timeout-ms = <50>;
             key-positions = <POS_RH_C2R4 POS_RH_C2R5>;
             bindings = <&sk LG(LA(LC(LSHFT)))>;
-            layers = <LAYER_HRM_macOS LAYER_Autoshift LAYER_Typing>;
+            layers = <LAYER_HRM_WinLinx LAYER_Autoshift LAYER_Typing>;
         };
 
         // sticky "meh" modifiers (Alt + Ctrl + Shift) - TailorKey
@@ -1388,7 +1873,7 @@
             timeout-ms = <50>;
             key-positions = <POS_RH_C3R5 POS_RH_C3R4>;
             bindings = <&sk LA(LC(LSHFT))>;
-            layers = <LAYER_HRM_macOS LAYER_Autoshift LAYER_Typing>;
+            layers = <LAYER_HRM_WinLinx LAYER_Autoshift LAYER_Typing>;
         };
 
         // toggle gaming layer - TailorKey
@@ -1398,109 +1883,109 @@
             bindings = <&tog LAYER_Gaming>;
         };
 
+        // Alt Tab Switcher (Cursor Layer) - TailorKey
+        combo_tabswitch_alt_v1_TKZ {
+            key-positions = <POS_LH_T1 POS_LH_C1R4>;
+            bindings = <&mod_tab_chord_v2_TKZ LALT LAYER_Cursor>;
+            layers = <LAYER_HRM_WinLinx LAYER_Typing LAYER_Autoshift>;
+        };
+
         // capslock when pressing both T1's - TailorKey
         combo_capslock_v1_TKZ {
             key-positions = <POS_LH_T1 POS_RH_T1>;
             bindings = <&kp CAPS>;
-            layers = <LAYER_HRM_macOS LAYER_Typing LAYER_Autoshift>;
+            layers = <LAYER_HRM_WinLinx LAYER_Typing LAYER_Autoshift>;
         };
 
         // Alt Tab Switcher (Cursor Layer) - TailorKey
-        combo_tabswitch_gui_v1_TKZ {
-            key-positions = <POS_LH_T1 POS_LH_C1R4>;
-            bindings = <&mod_tab_chord_v2_TKZ LGUI LAYER_Cursor>;
-            layers = <LAYER_HRM_macOS LAYER_Typing LAYER_Autoshift>;
-        };
-
-        // Ctrl Tab Switcher (Cursor Layer) - TailorKey
         combo_tabswitch_ctrl_v1_TKZ {
             key-positions = <POS_LH_C2R5 POS_LH_C2R4>;
-            bindings = <&mod_tab_chord_v2_TKZ LGUI LAYER_Cursor>;
-            layers = <LAYER_HRM_macOS LAYER_Typing LAYER_Autoshift>;
+            bindings = <&mod_tab_chord_v2_TKZ LCTRL LAYER_Cursor>;
+            layers = <LAYER_HRM_WinLinx LAYER_Typing LAYER_Autoshift>;
         };
 
         // F1 combo for Go60 - TailorKey
         combo_F1_cb_v1_TKZ {
             key-positions = <POS_LH_C5R1 POS_LH_C5R2>;
             bindings = <&kp F1>;
-            layers = <LAYER_HRM_macOS LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
+            layers = <LAYER_HRM_WinLinx LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
         };
 
         // F10 combo for Go60 - TailorKey
         combo_F10_cb_v1_TKZ {
             key-positions = <POS_RH_C5R1 POS_RH_C5R2>;
             bindings = <&kp F10>;
-            layers = <LAYER_HRM_macOS LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
+            layers = <LAYER_HRM_WinLinx LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
         };
 
         // F11 combo for Go60 - TailorKey
         combo_F11_cb_v1_TKZ {
             key-positions = <POS_RH_C6R1 POS_RH_C6R2>;
             bindings = <&kp F11>;
-            layers = <LAYER_HRM_macOS LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
+            layers = <LAYER_HRM_WinLinx LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
         };
 
         // F12 combo for Go60 - TailorKey
         combo_F12_cb_v1_TKZ {
             key-positions = <POS_RH_C6R1 POS_RH_C5R1>;
             bindings = <&kp F12>;
-            layers = <LAYER_HRM_macOS LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
+            layers = <LAYER_HRM_WinLinx LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
         };
 
         // F2 combo for Go60 - TailorKey
         combo_F2_cb_v1_TKZ {
             key-positions = <POS_LH_C4R2 POS_LH_C4R1>;
             bindings = <&kp F2>;
-            layers = <LAYER_HRM_macOS LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
+            layers = <LAYER_HRM_WinLinx LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
         };
 
         // F3 combo for Go60 - TailorKey
         combo_F3_cb_v1_TKZ {
             key-positions = <POS_LH_C3R2 POS_LH_C3R1>;
             bindings = <&kp F3>;
-            layers = <LAYER_HRM_macOS LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
+            layers = <LAYER_HRM_WinLinx LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
         };
 
         // F4 combo for Go60 - TailorKey
         combo_F4_cb_v1_TKZ {
             key-positions = <POS_LH_C2R2 POS_LH_C2R1>;
             bindings = <&kp F4>;
-            layers = <LAYER_HRM_macOS LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
+            layers = <LAYER_HRM_WinLinx LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
         };
 
         // F5 combo for Go60 - TailorKey
         combo_F5_cb_v1_TKZ {
             key-positions = <POS_LH_C1R2 POS_LH_C1R1>;
             bindings = <&kp F5>;
-            layers = <LAYER_HRM_macOS LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
+            layers = <LAYER_HRM_WinLinx LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
         };
 
         // F6 combo for Go60 - TailorKey
         combo_F6_cb_v1_TKZ {
             key-positions = <POS_RH_C1R2 POS_RH_C1R1>;
             bindings = <&kp F6>;
-            layers = <LAYER_HRM_macOS LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
+            layers = <LAYER_HRM_WinLinx LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
         };
 
         // F7 combo for Go60 - TailorKey
         combo_F7_cb_v1_TKZ {
             key-positions = <POS_RH_C2R1 POS_RH_C2R2>;
             bindings = <&kp F7>;
-            layers = <LAYER_HRM_macOS LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
+            layers = <LAYER_HRM_WinLinx LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
         };
 
         // F8 combo for Go60 - TailorKey
         combo_F8_cb_v1_TKZ {
             key-positions = <POS_RH_C3R1 POS_RH_C3R2>;
             bindings = <&kp F8>;
-            layers = <LAYER_HRM_macOS LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
+            layers = <LAYER_HRM_WinLinx LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
         };
 
         // F9 combo for Go60 - TailorKey
         combo_F9_cb_v1_TKZ {
             key-positions = <POS_RH_C4R1 POS_RH_C4R2>;
             bindings = <&kp F9>;
-            layers = <LAYER_HRM_macOS LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
+            layers = <LAYER_HRM_WinLinx LAYER_Typing LAYER_Autoshift LAYER_LeftPinky LAYER_LeftRingy LAYER_LeftMiddy LAYER_LeftIndex LAYER_RightPinky LAYER_RightRingy LAYER_RightMiddy LAYER_RightIndex>;
         };
     };
 };
@@ -1511,13 +1996,13 @@
         compatible = "zmk,keymap";
 
 
-        layer_HRM_macOS {
+        layer_HRM_WinLinx {
             bindings = <
-            &kp EQUAL                           &kp N1                         &kp N2                          &kp N3                           &kp N4  &kp N5                                                                                                                                                         &kp N6                            &kp N7                           &kp N8                          &kp N9                               &kp N0         &kp MINUS
-              &kp TAB                            &kp Q                          &kp W                           &kp E                            &kp R   &kp T                                                                                                                                                          &kp Y                             &kp U                            &kp I                           &kp O                                &kp P          &kp BSLH
-              &kp ESC  &HRM_left_pinky_v1B_TKZ LCTRL A  &HRM_left_ring_v1B_TKZ LALT S  &HRM_left_middy_v1B_TKZ LGUI D  &HRM_left_index_v1B_TKZ LSHFT F   &kp G                                                                                                                                                          &kp H  &HRM_right_index_v1B_TKZ RSHFT J  &HRM_right_middy_v1B_TKZ RGUI K  &HRM_right_ring_v1B_TKZ LALT L  &HRM_right_pinky_v1B_TKZ RCTRL SEMI           &kp SQT
- &magic LAYER_Magic 0                            &kp Z                          &kp X                           &kp C                            &kp V   &kp B                                                                                                                                                          &kp N                             &kp M                        &kp COMMA                         &kp DOT                             &kp FSLH  &td_LAYER_Keypad
-                                                                             &kp HOME                        &kp LEFT                        &kp RIGHT                                                                                                                                                                                                   &kp UP                         &kp DOWN                         &kp END
+            &kp EQUAL                          &kp N1                         &kp N2                           &kp N3                           &kp N4  &kp N5                                                                                                                                                         &kp N6                            &kp N7                            &kp N8                          &kp N9                              &kp N0         &kp MINUS
+              &kp TAB                           &kp Q                          &kp W                            &kp E                            &kp R   &kp T                                                                                                                                                          &kp Y                             &kp U                             &kp I                           &kp O                               &kp P          &kp BSLH
+              &kp ESC  &HRM_left_pinky_v1B_TKZ LGUI A  &HRM_left_ring_v1B_TKZ LALT S  &HRM_left_middy_v1B_TKZ LCTRL D  &HRM_left_index_v1B_TKZ LSHFT F   &kp G                                                                                                                                                          &kp H  &HRM_right_index_v1B_TKZ RSHFT J  &HRM_right_middy_v1B_TKZ RCTRL K  &HRM_right_ring_v1B_TKZ LALT L  &HRM_right_pinky_v1B_TKZ RGUI SEMI           &kp SQT
+ &magic LAYER_Magic 0                           &kp Z                          &kp X                            &kp C                            &kp V   &kp B                                                                                                                                                          &kp N                             &kp M                         &kp COMMA                         &kp DOT                            &kp FSLH  &td_LAYER_Keypad
+                                                                            &kp HOME                         &kp LEFT                        &kp RIGHT                                                                                                                                                                                                   &kp UP                          &kp DOWN                         &kp END
                                                                                                                                                                 &thumb_v2_TKZ LAYER_Cursor BSPC  &thumb_v2_TKZ LAYER_Keypad DEL  &kp LCTRL  &kp RALT  &thumb_v2_TKZ LAYER_Mouse RET  &space_v3_TKZ LAYER_Symbol SPACE
             >;
         };
@@ -1546,76 +2031,76 @@
 
         layer_LeftPinky {
             bindings = <
- &HRM_left_pinky_tap_v1B_TKZ EQUAL  &HRM_left_pinky_tap_v1B_TKZ N1       &HRM_left_pinky_tap_v1B_TKZ N2        &HRM_left_pinky_tap_v1B_TKZ N3         &HRM_left_pinky_tap_v1B_TKZ N4  &HRM_left_pinky_tap_v1B_TKZ N5                                                  &trans  &trans  &trans  &trans    &trans  &trans
-                            &trans   &HRM_left_pinky_tap_v1B_TKZ Q        &HRM_left_pinky_tap_v1B_TKZ W         &HRM_left_pinky_tap_v1B_TKZ E          &HRM_left_pinky_tap_v1B_TKZ R   &HRM_left_pinky_tap_v1B_TKZ T                                                  &trans  &trans  &trans  &trans    &trans  &trans
-                            &trans                           &none  &HRM_left_pinky_ring_v1B_TKZ LALT S  &HRM_left_pinky_middy_v1B_TKZ LGUI D  &HRM_left_pinky_index_v1B_TKZ LSHFT F   &HRM_left_pinky_tap_v1B_TKZ G                                                  &trans   &kp J   &kp K   &kp L  &kp SEMI  &trans
-                            &trans   &HRM_left_pinky_tap_v1B_TKZ Z        &HRM_left_pinky_tap_v1B_TKZ X         &HRM_left_pinky_tap_v1B_TKZ C          &HRM_left_pinky_tap_v1B_TKZ V   &HRM_left_pinky_tap_v1B_TKZ B                                                  &trans  &trans  &trans  &trans    &trans  &trans
-                                                                                                 &trans                                &trans                                 &trans                                                                                          &trans  &trans  &trans
-                                                                                                                                                                                                                      &trans  &trans  &trans  &trans  &trans  &trans
+ &HRM_left_pinky_tap_v1B_TKZ EQUAL  &HRM_left_pinky_tap_v1B_TKZ N1       &HRM_left_pinky_tap_v1B_TKZ N2         &HRM_left_pinky_tap_v1B_TKZ N3         &HRM_left_pinky_tap_v1B_TKZ N4  &HRM_left_pinky_tap_v1B_TKZ N5                                                  &trans  &trans  &trans  &trans    &trans  &trans
+                            &trans   &HRM_left_pinky_tap_v1B_TKZ Q        &HRM_left_pinky_tap_v1B_TKZ W          &HRM_left_pinky_tap_v1B_TKZ E          &HRM_left_pinky_tap_v1B_TKZ R   &HRM_left_pinky_tap_v1B_TKZ T                                                  &trans  &trans  &trans  &trans    &trans  &trans
+                            &trans                           &none  &HRM_left_pinky_ring_v1B_TKZ LALT S  &HRM_left_pinky_middy_v1B_TKZ LCTRL D  &HRM_left_pinky_index_v1B_TKZ LSHFT F   &HRM_left_pinky_tap_v1B_TKZ G                                                  &trans   &kp J   &kp K   &kp L  &kp SEMI  &trans
+                            &trans   &HRM_left_pinky_tap_v1B_TKZ Z        &HRM_left_pinky_tap_v1B_TKZ X          &HRM_left_pinky_tap_v1B_TKZ C          &HRM_left_pinky_tap_v1B_TKZ V   &HRM_left_pinky_tap_v1B_TKZ B                                                  &trans  &trans  &trans  &trans    &trans  &trans
+                                                                                                 &trans                                 &trans                                 &trans                                                                                          &trans  &trans  &trans
+                                                                                                                                                                                                                       &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
         layer_LeftRingy {
             bindings = <
- &HRM_left_ring_tap_v1B_TKZ EQUAL         &HRM_left_ring_tap_v1B_TKZ N1  &HRM_left_ring_tap_v1B_TKZ N2        &HRM_left_ring_tap_v1B_TKZ N3         &HRM_left_ring_tap_v1B_TKZ N4  &HRM_left_ring_tap_v1B_TKZ N5                                                  &trans  &trans  &trans  &trans    &trans  &trans
-                           &trans          &HRM_left_ring_tap_v1B_TKZ Q   &HRM_left_ring_tap_v1B_TKZ W         &HRM_left_ring_tap_v1B_TKZ E          &HRM_left_ring_tap_v1B_TKZ R   &HRM_left_ring_tap_v1B_TKZ T                                                  &trans  &trans  &trans  &trans    &trans  &trans
-                           &trans  &HRM_left_ring_pinky_v1B_TKZ LCTRL A                          &none  &HRM_left_ring_middy_v1B_TKZ LGUI D  &HRM_left_ring_index_v1B_TKZ LSHFT F   &HRM_left_ring_tap_v1B_TKZ G                                                  &trans   &kp J   &kp K   &kp L  &kp SEMI  &trans
-                           &trans          &HRM_left_ring_tap_v1B_TKZ Z   &HRM_left_ring_tap_v1B_TKZ X         &HRM_left_ring_tap_v1B_TKZ C          &HRM_left_ring_tap_v1B_TKZ V   &HRM_left_ring_tap_v1B_TKZ B                                                  &trans  &trans  &trans  &trans    &trans  &trans
-                                                                                                &trans                               &trans                                &trans                                                                                         &trans  &trans  &trans
+ &HRM_left_ring_tap_v1B_TKZ EQUAL        &HRM_left_ring_tap_v1B_TKZ N1  &HRM_left_ring_tap_v1B_TKZ N2         &HRM_left_ring_tap_v1B_TKZ N3         &HRM_left_ring_tap_v1B_TKZ N4  &HRM_left_ring_tap_v1B_TKZ N5                                                  &trans  &trans  &trans  &trans    &trans  &trans
+                           &trans         &HRM_left_ring_tap_v1B_TKZ Q   &HRM_left_ring_tap_v1B_TKZ W          &HRM_left_ring_tap_v1B_TKZ E          &HRM_left_ring_tap_v1B_TKZ R   &HRM_left_ring_tap_v1B_TKZ T                                                  &trans  &trans  &trans  &trans    &trans  &trans
+                           &trans  &HRM_left_ring_pinky_v1B_TKZ LGUI A                          &none  &HRM_left_ring_middy_v1B_TKZ LCTRL D  &HRM_left_ring_index_v1B_TKZ LSHFT F   &HRM_left_ring_tap_v1B_TKZ G                                                  &trans   &kp J   &kp K   &kp L  &kp SEMI  &trans
+                           &trans         &HRM_left_ring_tap_v1B_TKZ Z   &HRM_left_ring_tap_v1B_TKZ X          &HRM_left_ring_tap_v1B_TKZ C          &HRM_left_ring_tap_v1B_TKZ V   &HRM_left_ring_tap_v1B_TKZ B                                                  &trans  &trans  &trans  &trans    &trans  &trans
+                                                                                               &trans                                &trans                                &trans                                                                                         &trans  &trans  &trans
                                                                                                                                                                                                                   &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
         layer_LeftMiddy {
             bindings = <
- &HRM_left_middy_tap_v1B_TKZ EQUAL         &HRM_left_middy_tap_v1B_TKZ N1       &HRM_left_middy_tap_v1B_TKZ N2  &HRM_left_middy_tap_v1B_TKZ N3         &HRM_left_middy_tap_v1B_TKZ N4  &HRM_left_middy_tap_v1B_TKZ N5                                                  &trans  &trans  &trans  &trans    &trans  &trans
-                            &trans          &HRM_left_middy_tap_v1B_TKZ Q        &HRM_left_middy_tap_v1B_TKZ W   &HRM_left_middy_tap_v1B_TKZ E          &HRM_left_middy_tap_v1B_TKZ R   &HRM_left_middy_tap_v1B_TKZ T                                                  &trans  &trans  &trans  &trans    &trans  &trans
-                            &trans  &HRM_left_middy_pinky_v1B_TKZ LCTRL A  &HRM_left_middy_ring_v1B_TKZ LALT S                           &none  &HRM_left_middy_index_v1B_TKZ LSHFT F   &HRM_left_middy_tap_v1B_TKZ G                                                  &trans   &kp J   &kp K   &kp L  &kp SEMI  &trans
-                            &trans          &HRM_left_middy_tap_v1B_TKZ Z        &HRM_left_middy_tap_v1B_TKZ X   &HRM_left_middy_tap_v1B_TKZ C          &HRM_left_middy_tap_v1B_TKZ V   &HRM_left_middy_tap_v1B_TKZ B                                                  &trans  &trans  &trans  &trans    &trans  &trans
-                                                                                                        &trans                          &trans                                 &trans                                                                                          &trans  &trans  &trans
-                                                                                                                                                                                                                       &trans  &trans  &trans  &trans  &trans  &trans
+ &HRM_left_middy_tap_v1B_TKZ EQUAL        &HRM_left_middy_tap_v1B_TKZ N1       &HRM_left_middy_tap_v1B_TKZ N2  &HRM_left_middy_tap_v1B_TKZ N3         &HRM_left_middy_tap_v1B_TKZ N4  &HRM_left_middy_tap_v1B_TKZ N5                                                  &trans  &trans  &trans  &trans    &trans  &trans
+                            &trans         &HRM_left_middy_tap_v1B_TKZ Q        &HRM_left_middy_tap_v1B_TKZ W   &HRM_left_middy_tap_v1B_TKZ E          &HRM_left_middy_tap_v1B_TKZ R   &HRM_left_middy_tap_v1B_TKZ T                                                  &trans  &trans  &trans  &trans    &trans  &trans
+                            &trans  &HRM_left_middy_pinky_v1B_TKZ LGUI A  &HRM_left_middy_ring_v1B_TKZ LALT S                           &none  &HRM_left_middy_index_v1B_TKZ LSHFT F   &HRM_left_middy_tap_v1B_TKZ G                                                  &trans   &kp J   &kp K   &kp L  &kp SEMI  &trans
+                            &trans         &HRM_left_middy_tap_v1B_TKZ Z        &HRM_left_middy_tap_v1B_TKZ X   &HRM_left_middy_tap_v1B_TKZ C          &HRM_left_middy_tap_v1B_TKZ V   &HRM_left_middy_tap_v1B_TKZ B                                                  &trans  &trans  &trans  &trans    &trans  &trans
+                                                                                                       &trans                          &trans                                 &trans                                                                                          &trans  &trans  &trans
+                                                                                                                                                                                                                      &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
         layer_LeftIndex {
             bindings = <
- &HRM_left_index_tap_v1B_TKZ EQUAL         &HRM_left_index_tap_v1B_TKZ N1     &HRM_left_index_tap_v1B_TKZ N2        &HRM_left_index_tap_v1B_TKZ N3  &HRM_left_index_tap_v1B_TKZ N4  &HRM_left_index_tap_v1B_TKZ N5                                                  &trans  &trans  &trans  &trans    &trans  &trans
-                            &trans          &HRM_left_index_tap_v1B_TKZ Q      &HRM_left_index_tap_v1B_TKZ W         &HRM_left_index_tap_v1B_TKZ E   &HRM_left_index_tap_v1B_TKZ R   &HRM_left_index_tap_v1B_TKZ T                                                  &trans  &trans  &trans  &trans    &trans  &trans
-                            &trans  &HRM_left_index_pinky_v1B_TKZ LCTRL A  &HRM_left_index_ringv1_TKZ LALT S  &HRM_left_index_middy_v1B_TKZ LGUI D                           &none   &HRM_left_index_tap_v1B_TKZ G                                                  &trans   &kp J   &kp K   &kp L  &kp SEMI  &trans
-                            &trans          &HRM_left_index_tap_v1B_TKZ Z      &HRM_left_index_tap_v1B_TKZ X         &HRM_left_index_tap_v1B_TKZ C   &HRM_left_index_tap_v1B_TKZ V   &HRM_left_index_tap_v1B_TKZ B                                                  &trans  &trans  &trans  &trans    &trans  &trans
-                                                                                                      &trans                                &trans                          &trans                                                                                          &trans  &trans  &trans
+ &HRM_left_index_tap_v1B_TKZ EQUAL        &HRM_left_index_tap_v1B_TKZ N1     &HRM_left_index_tap_v1B_TKZ N2         &HRM_left_index_tap_v1B_TKZ N3  &HRM_left_index_tap_v1B_TKZ N4  &HRM_left_index_tap_v1B_TKZ N5                                                  &trans  &trans  &trans  &trans    &trans  &trans
+                            &trans         &HRM_left_index_tap_v1B_TKZ Q      &HRM_left_index_tap_v1B_TKZ W          &HRM_left_index_tap_v1B_TKZ E   &HRM_left_index_tap_v1B_TKZ R   &HRM_left_index_tap_v1B_TKZ T                                                  &trans  &trans  &trans  &trans    &trans  &trans
+                            &trans  &HRM_left_index_pinky_v1B_TKZ LGUI A  &HRM_left_index_ringv1_TKZ LALT S  &HRM_left_index_middy_v1B_TKZ LCTRL D                           &none   &HRM_left_index_tap_v1B_TKZ G                                                  &trans   &kp J   &kp K   &kp L  &kp SEMI  &trans
+                            &trans         &HRM_left_index_tap_v1B_TKZ Z      &HRM_left_index_tap_v1B_TKZ X          &HRM_left_index_tap_v1B_TKZ C   &HRM_left_index_tap_v1B_TKZ V   &HRM_left_index_tap_v1B_TKZ B                                                  &trans  &trans  &trans  &trans    &trans  &trans
+                                                                                                     &trans                                 &trans                          &trans                                                                                          &trans  &trans  &trans
                                                                                                                                                                                                                     &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
         layer_RightPinky {
             bindings = <
- &trans  &trans  &trans  &trans  &trans  &trans                                                  &HRM_right_pinky_tap_v1B_TKZ N6         &HRM_right_pinky_tap_v1B_TKZ N7        &HRM_right_pinky_tap_v1B_TKZ N8       &HRM_right_pinky_tap_v1B_TKZ N9  &HRM_right_pinky_tap_v1B_TKZ N0  &HRM_right_pinky_tap_v1B_TKZ MINUS
- &trans  &trans  &trans  &trans  &trans  &trans                                                   &HRM_right_pinky_tap_v1B_TKZ Y          &HRM_right_pinky_tap_v1B_TKZ U         &HRM_right_pinky_tap_v1B_TKZ I        &HRM_right_pinky_tap_v1B_TKZ O   &HRM_right_pinky_tap_v1B_TKZ P   &HRM_right_pinky_tap_v1B_TKZ BSLH
- &trans   &kp A   &kp S   &kp D   &kp F  &trans                                                   &HRM_right_pinky_tap_v1B_TKZ H  &HRM_right_pinky_index_v1B_TKZ RSHFT J  &HRM_right_pinky_middy_v1B_TKZ RGUI K  &HRM_right_pinky_ring_v1B_TKZ LALT L                            &none    &HRM_right_pinky_tap_v1B_TKZ SQT
- &trans  &trans  &trans  &trans  &trans  &trans                                                   &HRM_right_pinky_tap_v1B_TKZ N          &HRM_right_pinky_tap_v1B_TKZ M     &HRM_right_pinky_tap_v1B_TKZ COMMA      &HRM_right_pinky_tap_v1B_TKZ DOT                           &trans                              &trans
-                 &trans  &trans  &trans                                                                                                                           &trans                                 &trans                                &trans
+ &trans  &trans  &trans  &trans  &trans  &trans                                                  &HRM_right_pinky_tap_v1B_TKZ N6         &HRM_right_pinky_tap_v1B_TKZ N7         &HRM_right_pinky_tap_v1B_TKZ N8       &HRM_right_pinky_tap_v1B_TKZ N9  &HRM_right_pinky_tap_v1B_TKZ N0  &HRM_right_pinky_tap_v1B_TKZ MINUS
+ &trans  &trans  &trans  &trans  &trans  &trans                                                   &HRM_right_pinky_tap_v1B_TKZ Y          &HRM_right_pinky_tap_v1B_TKZ U          &HRM_right_pinky_tap_v1B_TKZ I        &HRM_right_pinky_tap_v1B_TKZ O   &HRM_right_pinky_tap_v1B_TKZ P   &HRM_right_pinky_tap_v1B_TKZ BSLH
+ &trans   &kp A   &kp S   &kp D   &kp F  &trans                                                   &HRM_right_pinky_tap_v1B_TKZ H  &HRM_right_pinky_index_v1B_TKZ RSHFT J  &HRM_right_pinky_middy_v1B_TKZ RCTRL K  &HRM_right_pinky_ring_v1B_TKZ LALT L                            &none    &HRM_right_pinky_tap_v1B_TKZ SQT
+ &trans  &trans  &trans  &trans  &trans  &trans                                                   &HRM_right_pinky_tap_v1B_TKZ N          &HRM_right_pinky_tap_v1B_TKZ M      &HRM_right_pinky_tap_v1B_TKZ COMMA      &HRM_right_pinky_tap_v1B_TKZ DOT                           &trans                              &trans
+                 &trans  &trans  &trans                                                                                                                           &trans                                  &trans                                &trans
                                                  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
         layer_RightRingy {
             bindings = <
- &trans  &trans  &trans  &trans  &trans  &trans                                                  &HRM_right_ring_tap_v1B_TKZ N6         &HRM_right_ring_tap_v1B_TKZ N7        &HRM_right_ring_tap_v1B_TKZ N8   &HRM_right_ring_tap_v1B_TKZ N9            &HRM_right_ring_tap_v1B_TKZ N0  &HRM_right_ring_tap_v1B_TKZ MINUS
- &trans  &trans  &trans  &trans  &trans  &trans                                                   &HRM_right_ring_tap_v1B_TKZ Y          &HRM_right_ring_tap_v1B_TKZ U         &HRM_right_ring_tap_v1B_TKZ I    &HRM_right_ring_tap_v1B_TKZ O             &HRM_right_ring_tap_v1B_TKZ P   &HRM_right_ring_tap_v1B_TKZ BSLH
- &trans   &kp A   &kp S   &kp D   &kp F  &trans                                                   &HRM_right_ring_tap_v1B_TKZ H  &HRM_right_ring_index_v1B_TKZ RSHFT J  &HRM_right_ring_middy_v1B_TKZ RGUI K                            &none  &HRM_right_ring_pinky_v1B_TKZ RCTRL SEMI    &HRM_right_ring_tap_v1B_TKZ SQT
- &trans  &trans  &trans  &trans  &trans  &trans                                                   &HRM_right_ring_tap_v1B_TKZ N          &HRM_right_ring_tap_v1B_TKZ M     &HRM_right_ring_tap_v1B_TKZ COMMA  &HRM_right_ring_tap_v1B_TKZ DOT                                    &trans                             &trans
-                 &trans  &trans  &trans                                                                                                                         &trans                                &trans                           &trans
+ &trans  &trans  &trans  &trans  &trans  &trans                                                  &HRM_right_ring_tap_v1B_TKZ N6         &HRM_right_ring_tap_v1B_TKZ N7         &HRM_right_ring_tap_v1B_TKZ N8   &HRM_right_ring_tap_v1B_TKZ N9           &HRM_right_ring_tap_v1B_TKZ N0  &HRM_right_ring_tap_v1B_TKZ MINUS
+ &trans  &trans  &trans  &trans  &trans  &trans                                                   &HRM_right_ring_tap_v1B_TKZ Y          &HRM_right_ring_tap_v1B_TKZ U          &HRM_right_ring_tap_v1B_TKZ I    &HRM_right_ring_tap_v1B_TKZ O            &HRM_right_ring_tap_v1B_TKZ P   &HRM_right_ring_tap_v1B_TKZ BSLH
+ &trans   &kp A   &kp S   &kp D   &kp F  &trans                                                   &HRM_right_ring_tap_v1B_TKZ H  &HRM_right_ring_index_v1B_TKZ RSHFT J  &HRM_right_ring_middy_v1B_TKZ RCTRL K                            &none  &HRM_right_ring_pinky_v1B_TKZ RGUI SEMI    &HRM_right_ring_tap_v1B_TKZ SQT
+ &trans  &trans  &trans  &trans  &trans  &trans                                                   &HRM_right_ring_tap_v1B_TKZ N          &HRM_right_ring_tap_v1B_TKZ M      &HRM_right_ring_tap_v1B_TKZ COMMA  &HRM_right_ring_tap_v1B_TKZ DOT                                   &trans                             &trans
+                 &trans  &trans  &trans                                                                                                                         &trans                                 &trans                           &trans
                                                  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
         layer_RightMiddy {
             bindings = <
- &trans  &trans  &trans  &trans  &trans  &trans                                                  &HRM_right_middy_tap_v1B_TKZ N6         &HRM_right_middy_tap_v1B_TKZ N7     &HRM_right_middy_tap_v1B_TKZ N8       &HRM_right_middy_tap_v1B_TKZ N9            &HRM_right_middy_tap_v1B_TKZ N0  &HRM_right_middy_tap_v1B_TKZ MINUS
- &trans  &trans  &trans  &trans  &trans  &trans                                                   &HRM_right_middy_tap_v1B_TKZ Y          &HRM_right_middy_tap_v1B_TKZ U      &HRM_right_middy_tap_v1B_TKZ I        &HRM_right_middy_tap_v1B_TKZ O             &HRM_right_middy_tap_v1B_TKZ P   &HRM_right_middy_tap_v1B_TKZ BSLH
- &trans   &kp A   &kp S   &kp D   &kp F  &trans                                                   &HRM_right_middy_tap_v1B_TKZ H  &HRM_right_middy_index_v1B_TKZ RSHFT J                               &none  &HRM_right_middy_ring_v1B_TKZ LALT L  &HRM_right_middy_pinky_v1B_TKZ RCTRL SEMI    &HRM_right_middy_tap_v1B_TKZ SQT
- &trans  &trans  &trans  &trans  &trans  &trans                                                   &HRM_right_middy_tap_v1B_TKZ N          &HRM_right_middy_tap_v1B_TKZ M  &HRM_right_middy_tap_v1B_TKZ COMMA      &HRM_right_middy_tap_v1B_TKZ DOT                                     &trans                              &trans
+ &trans  &trans  &trans  &trans  &trans  &trans                                                  &HRM_right_middy_tap_v1B_TKZ N6         &HRM_right_middy_tap_v1B_TKZ N7     &HRM_right_middy_tap_v1B_TKZ N8       &HRM_right_middy_tap_v1B_TKZ N9           &HRM_right_middy_tap_v1B_TKZ N0  &HRM_right_middy_tap_v1B_TKZ MINUS
+ &trans  &trans  &trans  &trans  &trans  &trans                                                   &HRM_right_middy_tap_v1B_TKZ Y          &HRM_right_middy_tap_v1B_TKZ U      &HRM_right_middy_tap_v1B_TKZ I        &HRM_right_middy_tap_v1B_TKZ O            &HRM_right_middy_tap_v1B_TKZ P   &HRM_right_middy_tap_v1B_TKZ BSLH
+ &trans   &kp A   &kp S   &kp D   &kp F  &trans                                                   &HRM_right_middy_tap_v1B_TKZ H  &HRM_right_middy_index_v1B_TKZ RSHFT J                               &none  &HRM_right_middy_ring_v1B_TKZ LALT L  &HRM_right_middy_pinky_v1B_TKZ RGUI SEMI    &HRM_right_middy_tap_v1B_TKZ SQT
+ &trans  &trans  &trans  &trans  &trans  &trans                                                   &HRM_right_middy_tap_v1B_TKZ N          &HRM_right_middy_tap_v1B_TKZ M  &HRM_right_middy_tap_v1B_TKZ COMMA      &HRM_right_middy_tap_v1B_TKZ DOT                                    &trans                              &trans
                  &trans  &trans  &trans                                                                                                                           &trans                              &trans                                &trans
                                                  &trans  &trans  &trans  &trans  &trans  &trans
             >;
@@ -1623,23 +2108,23 @@
 
         layer_RightIndex {
             bindings = <
- &trans  &trans  &trans  &trans  &trans  &trans                                                  &HRM_right_index_tap_v1B_TKZ N6  &HRM_right_index_tap_v1B_TKZ N7        &HRM_right_index_tap_v1B_TKZ N8       &HRM_right_index_tap_v1B_TKZ N9            &HRM_right_index_tap_v1B_TKZ N0  &HRM_right_index_tap_v1B_TKZ MINUS
- &trans  &trans  &trans  &trans  &trans  &trans                                                   &HRM_right_index_tap_v1B_TKZ Y   &HRM_right_index_tap_v1B_TKZ U         &HRM_right_index_tap_v1B_TKZ I        &HRM_right_index_tap_v1B_TKZ O             &HRM_right_index_tap_v1B_TKZ P   &HRM_right_index_tap_v1B_TKZ BSLH
- &trans   &kp A   &kp S   &kp D   &kp F  &trans                                                   &HRM_right_index_tap_v1B_TKZ H                            &none  &HRM_right_index_middy_v1B_TKZ RGUI K  &HRM_right_index_ring_v1B_TKZ LALT L  &HRM_right_index_pinky_v1B_TKZ RCTRL SEMI    &HRM_right_index_tap_v1B_TKZ SQT
- &trans  &trans  &trans  &trans  &trans  &trans                                                   &HRM_right_index_tap_v1B_TKZ N   &HRM_right_index_tap_v1B_TKZ M     &HRM_right_index_tap_v1B_TKZ COMMA      &HRM_right_index_tap_v1B_TKZ DOT                                     &trans                              &trans
-                 &trans  &trans  &trans                                                                                                                    &trans                                 &trans                                &trans
+ &trans  &trans  &trans  &trans  &trans  &trans                                                  &HRM_right_index_tap_v1B_TKZ N6  &HRM_right_index_tap_v1B_TKZ N7         &HRM_right_index_tap_v1B_TKZ N8       &HRM_right_index_tap_v1B_TKZ N9           &HRM_right_index_tap_v1B_TKZ N0  &HRM_right_index_tap_v1B_TKZ MINUS
+ &trans  &trans  &trans  &trans  &trans  &trans                                                   &HRM_right_index_tap_v1B_TKZ Y   &HRM_right_index_tap_v1B_TKZ U          &HRM_right_index_tap_v1B_TKZ I        &HRM_right_index_tap_v1B_TKZ O            &HRM_right_index_tap_v1B_TKZ P   &HRM_right_index_tap_v1B_TKZ BSLH
+ &trans   &kp A   &kp S   &kp D   &kp F  &trans                                                   &HRM_right_index_tap_v1B_TKZ H                            &none  &HRM_right_index_middy_v1B_TKZ RCTRL K  &HRM_right_index_ring_v1B_TKZ LALT L  &HRM_right_index_pinky_v1B_TKZ RGUI SEMI    &HRM_right_index_tap_v1B_TKZ SQT
+ &trans  &trans  &trans  &trans  &trans  &trans                                                   &HRM_right_index_tap_v1B_TKZ N   &HRM_right_index_tap_v1B_TKZ M      &HRM_right_index_tap_v1B_TKZ COMMA      &HRM_right_index_tap_v1B_TKZ DOT                                    &trans                              &trans
+                 &trans  &trans  &trans                                                                                                                    &trans                                  &trans                                &trans
                                                  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
         layer_Cursor {
             bindings = <
-     &none    &kp ESC                        &kp INS                    &kp LS(TAB)    &kp DEL      &none                                                                                                                     &none        &none      &kp K_APP  &kp PAUSE_BREAK   &kp SLCK      &none
-  &kp CAPS    &kp RET                  &kp LS(LG(Z))                      &kp LG(Z)   &kp BSPC  &kp LG(X)                                                                                                                 &kp LG(X)  &kp LS(TAB)      &kp LG(Z)    &kp LS(LG(Z))    &kp TAB  &kp PSCRN
- &sk LSHFT  &kp LCTRL                       &kp LALT                       &kp LGUI  &kp LSHFT  &kp LG(C)                                                                                                                 &kp LG(C)     &kp LEFT         &kp UP         &kp DOWN  &kp RIGHT  &sk RSHFT
- &kp LG(L)  &kp LG(A)  &cur_SELECT_LINE_macos_v1_TKZ  &cur_SELECT_WORD_macos_v1_TKZ  &kp LG(F)  &kp LG(V)                                                                                                                 &kp LG(V)     &kp HOME      &kp PG_UP        &kp PG_DN    &kp END  &kp LG(L)
-                                               &none                  &kp LS(LG(G))  &kp LG(G)                                                                                                                                         &kp LG(F)  &kp LS(LG(G))        &kp LG(G)
-                                                                                                            &none   &none   &none  &cur_SELECT_NONE_v1_TKZ  &cur_EXTEND_LINE_macos_v1_TKZ  &cur_EXTEND_WORD_macos_v1_TKZ
+     &none    &kp ESC                  &kp INS              &kp LS(TAB)    &kp DEL      &none                                                                                                         &none        &none      &kp K_APP  &kp PAUSE_BREAK   &kp SLCK      &none
+  &kp CAPS    &kp RET                &kp LC(Y)                &kp LC(Z)   &kp BSPC  &kp LC(X)                                                                                                     &kp LC(X)  &kp LS(TAB)      &kp LC(Z)        &kp LC(Y)    &kp TAB  &kp PSCRN
+ &sk LSHFT   &kp LGUI                 &kp LALT                &kp LCTRL  &kp LSHFT  &kp LC(C)                                                                                                     &kp LC(C)     &kp LEFT         &kp UP         &kp DOWN  &kp RIGHT  &sk RSHFT
+ &kp LC(L)  &kp LC(A)  &cur_SELECT_LINE_v1_TKZ  &cur_SELECT_WORD_v1_TKZ  &kp LC(F)  &kp LC(V)                                                                                                     &kp LC(V)     &kp HOME      &kp PG_UP        &kp PG_DN    &kp END  &kp LC(L)
+                                         &none            &kp LC(LS(G))  &kp LC(G)                                                                                                                             &kp LC(F)  &kp LC(LS(G))        &kp LC(G)
+                                                                                                &none   &none   &none  &cur_SELECT_NONE_v1_TKZ  &cur_EXTEND_LINE_v1_TKZ  &cur_EXTEND_WORD_v1_TKZ
             >;
         };
 
@@ -1647,8 +2132,8 @@
             bindings = <
                 &none     &kp F1     &kp F2     &kp F3     &kp F4         &kp F5                                                        &kp F6     &kp F7      &kp F8        &kp F9          &kp F10     &kp F11
               &kp TAB      &none   &kp HOME     &kp UP    &kp END      &kp PG_UP                                                     &kp KP_N7  &kp KP_N8   &kp KP_N9  &kp KP_MINUS     &kp KP_SLASH     &kp F12
-              &kp ESC      &kp Z   &kp LEFT   &kp DOWN  &kp RIGHT      &kp PG_DN                                                     &kp KP_N4  &kp KP_N5   &kp KP_N6   &kp KP_PLUS  &kp KP_MULTIPLY  &kp KP_NUM
- &magic LAYER_Magic 0  &kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)  &kp LS(LG(V))                                                     &kp KP_N1  &kp KP_N2   &kp KP_N3  &kp KP_ENTER        &kp EQUAL       &to 0
+              &kp ESC  &kp LC(Y)   &kp LEFT   &kp DOWN  &kp RIGHT      &kp PG_DN                                                     &kp KP_N4  &kp KP_N5   &kp KP_N6   &kp KP_PLUS  &kp KP_MULTIPLY  &kp KP_NUM
+ &magic LAYER_Magic 0  &kp LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp LS(LC(V))                                                     &kp KP_N1  &kp KP_N2   &kp KP_N3  &kp KP_ENTER        &kp EQUAL       &to 0
                                       &none     &trans     &trans                                                                               &kp KP_N0  &kp KP_DOT  &kp KP_ENTER
                                                                                    &none  &trans  &trans  &trans  &trans  &kp KP_N0
             >;
@@ -1656,10 +2141,10 @@
 
         layer_Symbol {
             bindings = <
-     &kp GRAVE      &kp COMMA    &kp LS(N9)            &kp LS(N0)       &kp SEMI       &kp DOT                                                                               &none      &none        &none                &none      &none   &none
-    &kp LS(N1)       &kp LBKT  &kp LS(LBKT)          &kp LS(RBKT)       &kp RBKT  &kp LS(FSLH)                                                                           &kp GRAVE    &kp DEL  &kp LS(TAB)              &kp INS    &kp ESC   &none
-    &kp LS(N3)     &kp LS(N6)     &kp EQUAL         &kp LS(MINUS)     &kp LS(N4)    &kp LS(N8)                                                                &kp LS(SINGLE_QUOTE)   &kp BSPC      &kp TAB            &kp SPACE    &kp RET   &none
- &kp LS(GRAVE)  &kp LS(COMMA)  &kp LS(BSLH)             &kp MINUS    &kp LS(DOT)      &kp FSLH                                                                             &kp SQT  &sk LSHFT     &sk LGUI             &sk LALT  &sk LCTRL   &none
+     &kp GRAVE      &kp COMMA    &kp LS(N9)            &kp LS(N0)       &kp SEMI       &kp DOT                                                                               &none      &none        &none                &none     &none   &none
+    &kp LS(N1)       &kp LBKT  &kp LS(LBKT)          &kp LS(RBKT)       &kp RBKT  &kp LS(FSLH)                                                                           &kp GRAVE    &kp DEL  &kp LS(TAB)              &kp INS   &kp ESC   &none
+    &kp LS(N3)     &kp LS(N6)     &kp EQUAL         &kp LS(MINUS)     &kp LS(N4)    &kp LS(N8)                                                                &kp LS(SINGLE_QUOTE)   &kp BSPC      &kp TAB            &kp SPACE   &kp RET   &none
+ &kp LS(GRAVE)  &kp LS(COMMA)  &kp LS(BSLH)             &kp MINUS    &kp LS(DOT)      &kp FSLH                                                                             &kp SQT  &sk LSHFT    &sk LCTRL             &sk LALT  &sk LGUI   &none
                                     &kp SQT  &kp LS(SINGLE_QUOTE)  &kp LS(EQUAL)                                                                                                     &kp BSLH   &kp LS(N7)  &symb_dotdot_v1_TKZ
                                                                                                 &kp LS(N5)  &kp LS(SEMI)  &kp LS(N2)   &none   &none   &none
             >;
@@ -1671,7 +2156,7 @@
   &none           &none       &msc SCRL_LEFT         &mmv MOVE_UP      &msc SCRL_RIGHT           &none                                                                                   &none            &sk RSHFT            &sk RCTRL             &sk RALT   &sk RGUI     &none
   &none    &msc SCRL_UP       &mmv MOVE_LEFT       &mmv MOVE_DOWN      &mmv MOVE_RIGHT    &msc SCRL_UP                                                                            &msc SCRL_UP  &mo LAYER_MouseFast  &mo LAYER_MouseWarp  &mo LAYER_MouseSlow  &mkp LCLK  &mkp MB4
   &none  &msc SCRL_DOWN  &mo LAYER_MouseSlow  &mo LAYER_MouseWarp  &mo LAYER_MouseFast  &msc SCRL_DOWN                                                                          &msc SCRL_DOWN       &msc SCRL_LEFT         &mmv MOVE_UP      &msc SCRL_RIGHT  &mkp RCLK  &mkp MB5
-                                   &kp LG(X)            &kp LG(C)            &kp LG(V)                                                                                                               &mmv MOVE_LEFT       &mmv MOVE_DOWN      &mmv MOVE_RIGHT
+                                   &kp LC(X)            &kp LC(C)            &kp LC(V)                                                                                                               &mmv MOVE_LEFT       &mmv MOVE_DOWN      &mmv MOVE_RIGHT
                                                                                                         &mkp LCLK  &mkp RCLK  &mkp MB4  &mkp LCLK  &tog LAYER_Mouse  &mkp RCLK
             >;
         };
